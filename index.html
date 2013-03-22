@@ -8,9 +8,65 @@
     <!-- CSS -->
     <link href="bootstrap.css" rel="stylesheet">
     <style type="text/css">
+
+      /* Sticky footer styles
+      -------------------------------------------------- */
+
       html,
       body {
         height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      #wrap > .container {
+        padding-top: 60px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+
+      code {
+        font-size: 80%;
+      }
+
+      #holder {
+	  height: 500px;  
+	  width: 1000px;
+	  border: 0;
       }
     </style>
     <link href="bootstrap-responsive.css" rel="stylesheet">
@@ -22,45 +78,60 @@
 
     </head>
   <body>
+
+
+    <!-- Part 1: Wrap all page content here -->
     <div id="wrap">
+
+      <!-- Fixed navbar -->
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
-            <a class="brand" href="http://en.wikipedia.org/wiki/Theory_of_constraints" target="_blank">Theory of constraints</a>
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+           <a class="brand" href="http://en.wikipedia.org/wiki/Theory_of_constraints" target="_blank">Theory of constraints</a>
             <div class="nav-collapse collapse">
               <ul class="nav">
-		<li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cloud<b class="caret"></b></a>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cloud <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="#" onclick="process()">Make cloud</a></li>
                     <li><a href="#">Read cloud</a></li>
                   </ul>
                 </li>
               </ul>
-            </div>
+            </div><!--/.nav-collapse -->
           </div>
         </div>
       </div>
 
+      <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
           <h1>Your cloud</h1>
         </div>
-	  <div id="holder"></div>
+       <div id="holder"></div>
       </div>
 
       <div id="push"></div>
     </div>
+
     <div id="footer">
       <div class="container">
         <p class="muted credit">Created by <a href="http://pl.linkedin.com/in/norbertkosmal/" target="_blank">Norbert Kosmal</a> using <a href="http://raphaeljs.com/" target="_blank">Raphael</a> and <a href="http://twitter.github.com/bootstrap/index.html" target="_blank">Bootstrap</a></p>
       </div>
     </div>
-    </body>
+
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js" type="text/javascript" charset="utf-8"></script> 
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js" type="text/javascript" charset="utf-8"></script>
 
     <script src="http://raphaeljs.com/raphael.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://www.shapevent.com/scaleraphael/scale.raphael.js" type="text/javascript" charset="utf-8"></script>
     <script src="cloud.js" type="text/javascript" charset="utf-8"></script>
-    <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js" type="text/javascript" charset="utf-8"></script>
+    
     
 </html>

@@ -1,15 +1,23 @@
-var width = 200;
+var width = 250;
 var height = 100;
 var angle = 10;
 var start = 10;
 var text = 30;
 
-var NPS = "", A= "", B= "", C= "", D= "", DD= "";
+var NPS = "I have problems in \nsolving conflicts", A= "Be known manager \nin my company", B= "Manage in the \nefficient way", C= "Fully understand\n the problem", D= "Take the fast decisions", DD= "Collect as much \ninformation as possible";
+var r;
+
+function resizePaper(){
+  var win = $(this);
+  if(r != null)
+  r.changeSize(win.width(), win.height(), true, false);
+}
+//$(window).resize(resizePaper); 
 
 function paint() {
 	$("#holder").html("");
 
-	r = Raphael("holder", 1000, 500), connections = [],
+	r = ScaleRaphael("holder", 1200, 500), connections = [],
 
 	shapes = [
 
@@ -39,12 +47,12 @@ function paint() {
 		});
 	}
 
-	var t = r.text(text + 1.75 * width, 1.5 * text + start, NPS).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 14});
-	var t = r.text(text + 1.75 * width, 1.5 * text + 180, B).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 14});;
-	var t = r.text(text + 3.5 * width, 1.5 * text + 180, D).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 14});;
-	var t = r.text(text + 1.75 * width, 1.5 * text + 380, C).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 14});;
-	var t = r.text(text + 3.5 * width, 1.5 * text + 380, DD).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 14});;
-	var t = r.text(text + start, 1.5 * text + 280, A).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 14});;
+	var t = r.text(text + 1.75 * width, 1.5 * text + start, NPS).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});
+	var t = r.text(text + 1.75 * width, 1.5 * text + 180, B).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
+	var t = r.text(text + 3.5 * width, 1.5 * text + 180, D).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
+	var t = r.text(text + 1.75 * width, 1.5 * text + 380, C).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
+	var t = r.text(text + 3.5 * width, 1.5 * text + 380, DD).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
+	var t = r.text(text + start, 1.5 * text + 280, A).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
 
 	/* connections */
 	connections.push(r.connection(shapes[0], shapes[1], "#f00", "#f00|3")); // NPS B
