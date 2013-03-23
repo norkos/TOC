@@ -1,11 +1,43 @@
 var width = 250;
-var height = 100;
+var height = 120;
 var angle = 10;
 var start = 10;
 var text = 30;
+//24
 
-var NPS = "I have problems in \nsolving conflicts", A= "Be known manager \nin my company", B= "Manage in the \nefficient way", C= "Fully understand\n the problem", D= "Take the fast decisions", DD= "Collect as much \ninformation as possible";
+
+function splitMe(x)
+{
+  var MAX = 22;
+  if(x.length < MAX){
+    return x;
+  }
+
+  var tab = x.split(" ");
+  var result = "";
+  var line = 0;
+  for (var i = 0; i < tab.length; i++) {
+       if(line + tab[i].length < MAX){
+             result = result + ' ' + tab[i];
+	     line = line + tab[i].length;
+       }
+       else{
+	 line = 0;
+             result = result + '\n' + tab[i];
+       }
+  }
+  
+  return result;
+}
+
+var aNPS = splitMe("I have problems in solving conflicts"), aA= splitMe("Be known manager in my company"), aB= splitMe("Manage in the efficient way"), aC= splitMe("Fully understand the problem"), aD= splitMe("Take the fast decisions"), aDD= splitMe("Collect as much information as possible");
+
+var NPS, A, B, C, D, DD;
 var r;
+
+function revert(){
+  NPS = aNPS, A= aA, B= aB, C= aC, D= aD, DD= aDD;
+}
 
 function paint() {
 	$("#holder").html("");
@@ -60,38 +92,38 @@ function paint() {
 
 function process() {
 	var a = prompt("What does bother me ?", "");
-	if (a == null)
-		return;
-	NPS = a;
+	if (a == null){ revert(); paint();
+		return; }
+	NPS = splitMe(a);
 	paint();
 
 	a = prompt("In what need does '" + NPS + "' bother me ?", "");
-	if (a == null)
-		return;
+	if (a == null){ revert(); paint();
+		return; }
 	B = a;
 	paint();
 
 	a = prompt("What should I do to attain the need '" + B +"' ?", "");
-	if (a == null)
-		return;
+	if (a == null){ revert(); paint();
+		return; }
 	D = a;
 	paint();
 
 	a = prompt("Which another need disturb me from making '" + D +"' ?", "");
-	if (a == null)
-		return;
+	if (a == null){ revert(); paint();
+		return; }
 	C = a;
 	paint();
 
 	a = prompt("What should I do to attain the need: " + C +"' ?", "");
-	if (a == null)
-		return;
+	if (a == null){ revert(); paint();
+		return; }
 	DD = a;
 	paint();
 
 	a = prompt("Why the both needs '" + B + "' and '" + C + "' are important for me ?", "");
-	if (a == null)
-		return;
+	if (a == null){ revert(); paint();
+		return; }
 	A = a;
 	paint();
 }
@@ -264,5 +296,6 @@ Raphael.fn.connection2 = function(obj1, obj2, line, bg) {
 };
 
 window.onload = function () {
+  revert();
   paint();
 };
