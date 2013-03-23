@@ -95,13 +95,8 @@
            <a class="brand" href="http://en.wikipedia.org/wiki/Theory_of_constraints" target="_blank">Theory of constraints</a>
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cloud <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#" onclick="process()">Make cloud</a></li>
-                    <li><a href="#">Read cloud</a></li>
-                  </ul>
-                </li>
+                <li><a href="#"  onclick="process()">Make cloud</a></li>
+                <li><a id="history" href="#"  data-toggle="popover" data-placement="bottom" data-content="" title="Cloud">Read cloud</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
@@ -126,8 +121,22 @@
     </div>
 
     <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js" type="text/javascript" charset="utf-8"></script> 
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+  
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-affix.js"></script>
+
+    <script src="http://twitter.github.com/bootstrap/assets/js/holder/holder.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+
+    <script src="http://twitter.github.com/bootstrap/assets/js/application.js"></script>
 
     <script src="http://raphaeljs.com/raphael.js" type="text/javascript" charset="utf-8"></script>
     <script src="http://www.shapevent.com/scaleraphael/scale.raphael.js" type="text/javascript" charset="utf-8"></script>
@@ -135,3 +144,4 @@
     
     
 </html>
+

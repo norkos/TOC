@@ -35,8 +35,14 @@ var aNPS = splitMe("I have problems in solving conflicts"), aA= splitMe("Be know
 var NPS, A, B, C, D, DD;
 var r;
 
+function makeText(){
+  var text = "I want '" + A + "'.\n" + "To '" + B +"' I must '" + D + "'.\n" + "But to '" + C + "' I must '" + DD + "'.\n" + "But it's impossible to make '" + D + "' and '" + DD + "'.";
+  $('#history').attr( 'data-content', text );
+}
+
 function revert(){
   NPS = aNPS, A= aA, B= aB, C= aC, D= aD, DD= aDD;
+  makeText();
 }
 
 function paint() {
@@ -126,6 +132,8 @@ function process() {
 		return; }
 	A = a;
 	paint();
+	
+	makeText();
 }
 
 Raphael.fn.connection = function(obj1, obj2, line, bg) {
