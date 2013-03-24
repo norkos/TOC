@@ -5,6 +5,10 @@ var start = 10;
 var text = 30;
 //24
 
+var r;
+
+var placeWidth = 1200;
+var placeHeight = 500;
 
 function splitMe(x)
 {
@@ -36,11 +40,12 @@ var NPS, A, B, C, D, DD;
 var r;
 
 function makeText(){
-  var text = "I want '" + A + "'.\n" + "To '" + B +"' I must '" + D + "'.\n" + "But to '" + C + "' I must '" + DD + "'.\n" + "But it's impossible to make '" + D + "' and '" + DD + "'.";
+  var text = "I want '" + A + "'." + " To '" + B +"' I must '" + D + "'.\n" + " But to '" + C + "' I must '" + DD + "'.\n" + " But it's impossible to make '" + D + "' and '" + DD + "'.";
   $('#history').attr( 'data-content', text );
 }
 
 function revert(){
+  $("#ourTitle").html("Cloud example");
   NPS = aNPS, A= aA, B= aB, C= aC, D= aD, DD= aDD;
   makeText();
 }
@@ -48,7 +53,7 @@ function revert(){
 function paint() {
 	$("#holder").html("");
 
-	r = ScaleRaphael("holder", 1200, 500), connections = [],
+	r = ScaleRaphael("holder", placeWidth, placeHeight), connections = [],
 
 	shapes = [
 
@@ -78,22 +83,22 @@ function paint() {
 		});
 	}
 
-	var t = r.text(text + 1.75 * width, 1.5 * text + start, NPS).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});
-	var t = r.text(text + 1.75 * width, 1.5 * text + 180, B).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
-	var t = r.text(text + 3.5 * width, 1.5 * text + 180, D).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
-	var t = r.text(text + 1.75 * width, 1.5 * text + 380, C).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
-	var t = r.text(text + 3.5 * width, 1.5 * text + 380, DD).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
-	var t = r.text(text + start, 1.5 * text + 280, A).attr({"text-anchor":"start",fill: '#ffffff',"font-size": 18});;
+	var attrs = {"text-anchor":"start",fill: '#ffffff',"font-size": 18};
+	var t = r.text(text + 1.75 * width, 1.5 * text + start, NPS).attr(attrs);
+	var t = r.text(text + 1.75 * width, 1.5 * text + 180, B).attr(attrs);
+	var t = r.text(text + 3.5 * width, 1.5 * text + 180, D).attr(attrs);
+	var t = r.text(text + 1.75 * width, 1.5 * text + 380, C).attr(attrs);
+	var t = r.text(text + 3.5 * width, 1.5 * text + 380, DD).attr(attrs);
+	var t = r.text(text + start, 1.5 * text + 280, A).attr(attrs);
 
 	/* connections */
-	connections.push(r.connection(shapes[2], shapes[4], "#f00")); // D DD
-	connections.push(r.connection(shapes[4], shapes[2], "#f00")); // D DD
-	connections.push(r.connection(shapes[0], shapes[1], "#f00")); // NPS B
+	connections.push(r.connectionWithArrow(shapes[4], shapes[2], "#f00")); // D DD
+	connections.push(r.connectionWithArrow(shapes[0], shapes[1], "#f00")); // NPS B
 
-	connections.push(r.connection2(shapes[2], shapes[1], "#D0D0D0")); // B D
-	connections.push(r.connection2(shapes[4], shapes[3], "#D0D0D0")); // C DD
-	connections.push(r.connection2(shapes[1], shapes[5], "#D0D0D0")); // B A
-	connections.push(r.connection2(shapes[3], shapes[5], "#D0D0D0")); // A C ...
+	connections.push(r.connectionWithoutArrow(shapes[2], shapes[1], "#D0D0D0")); // B D
+	connections.push(r.connectionWithoutArrow(shapes[4], shapes[3], "#D0D0D0")); // C DD
+	connections.push(r.connectionWithoutArrow(shapes[1], shapes[5], "#D0D0D0")); // B A
+	connections.push(r.connectionWithoutArrow(shapes[3], shapes[5], "#D0D0D0")); // A C ...
 }
 
 function process() {
@@ -134,9 +139,10 @@ function process() {
 	paint();
 	
 	makeText();
+	$("#ourTitle").html("Your cloud");
 }
 
-Raphael.fn.connection = function(obj1, obj2, line, bg) {
+Raphael.fn.connectionWithArrow = function(obj1, obj2, line, bg) {
 	if (obj1.line && obj1.from && obj1.to) {
 		line = obj1;
 		obj1 = line.from;
@@ -219,7 +225,7 @@ Raphael.fn.connection = function(obj1, obj2, line, bg) {
 	}
 };
 
-Raphael.fn.connection2 = function(obj1, obj2, line, bg) {
+Raphael.fn.connectionWithoutArrow = function(obj1, obj2, line, bg) {
 	if (obj1.line && obj1.from && obj1.to) {
 		line = obj1;
 		obj1 = line.from;
@@ -302,6 +308,7 @@ Raphael.fn.connection2 = function(obj1, obj2, line, bg) {
 		};
 	}
 };
+
 
 window.onload = function () {
   revert();

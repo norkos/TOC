@@ -5380,7 +5380,7 @@ input[type="submit"].btn.btn-mini {
   left: 0;
   z-index: 1010;
   display: none;
-  max-width: 276px;
+  max-width: 400px;
   padding: 1px;
   text-align: left;
   white-space: normal;
@@ -5415,7 +5415,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .popover-title {
-  padding: 8px 14px;
+  padding: 8px 200px;
   margin: 0;
   font-size: 14px;
   font-weight: normal;
