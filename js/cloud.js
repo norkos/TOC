@@ -19,7 +19,7 @@ function resizePaper(){
   HEIGHT = win.height();
   
   placeWidth = 0.75 * WIDTH;
-  placeHeight = 0.8 * HEIGHT;
+  placeHeight = 0.7 * HEIGHT;
   
   width = placeWidth / 5;
   height = placeHeight / 5;
