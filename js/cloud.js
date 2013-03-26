@@ -19,12 +19,11 @@ function resizePaper(){
   HEIGHT = win.height();
   
   placeWidth = 0.75 * WIDTH;
-  placeHeight = 0.7 * HEIGHT;
+  placeHeight = 0.8 * HEIGHT;
   
   width = placeWidth / 5;
-  height = placeHeight / 5;
+  height = placeHeight / 6;
   fontSize = width / 13;
-
 }
 
 function splitMe(x)
@@ -110,8 +109,8 @@ function paint() {
     raphael.connectionWithoutArrow(shapes[1], shapes[5], "#D0D0D0"), // B A
     raphael.connectionWithoutArrow(shapes[3], shapes[5], "#D0D0D0") // A C ...
     ]
-	
-	raphael.text(text + 1.75 * width, 1.5 * text + start, NPS).attr(attrs);
+
+    raphael.text(text + 1.75 * width, 1.5 * text + start, NPS).attr(attrs);
     raphael.text(text + 1.75 * width, 1.5 * text + dyFactorText + dyText, B).attr(attrs);
     raphael.text(text + 3.5 * width, 1.5 * text + dyFactorText + dyText, D).attr(attrs);
     raphael.text(text + 1.75 * width, 1.5 * text + 3 * dyFactorText + dyText, C).attr(attrs);
@@ -348,7 +347,7 @@ Raphael.fn.connectionWithoutArrow = function(obj1, obj2, line, bg) {
 $(window).resize(resizePaper); 
 
 window.onload = function () {
-	resizePaper();
+    resizePaper();
     revert();
     paint();
 };
