@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>TOC Cloud</title>
 
         <!-- CSS -->
@@ -64,10 +65,7 @@
             }
 
             #holder {
-                background: #000;
-		
-                height: 75%;  
-                width: 100%;
+                background: #fff;
                 border: 0;
             }
         </style>
@@ -110,7 +108,11 @@
                 <div class="page-header">
                     <h2 id="ourTitle">Cloud example</h1>
                 </div>
-                <div id="holder"></div>
+		<div class="row">
+		  <div class="span1"></div>
+		  <div class="span10" id="holder"></div>
+		  <div class="span1"></div>
+		</div>                
             </div>
 
             <div id="push"></div>
@@ -128,8 +130,7 @@
         <script src="js/bootstrap-collapse.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/raphael.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/cloud.js" type="text/javascript" charset="utf-8"></script>
-
+        <script src="js/norbus.js" type="text/javascript" charset="utf-8"></script>
 
 </html>
 
