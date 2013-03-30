@@ -177,7 +177,7 @@ function paint() {
     
     var attrs = {
         "text-anchor":"start",
-        fill: '#000',
+        fill: '#fff',
         "font-size":fontSize
     };
     
