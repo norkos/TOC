@@ -26,75 +26,9 @@ function splitMe(x)
     return result;
 }
 
-
-function makeText(){
-    var text = "I want '" + A + "'." + " To '" + B +"' I must '" + D + "'.\n" + " But to '" + C + "' I must '" + DD + "'.\n" + " But it's impossible to make '" + D + "' and '" + DD + "'.";
-    $('#history').attr( 'data-content', text );
-}
-
 function revert(){
     $('#ourTitle').html("Cloud example");
     NPS = fNPS, A= fA, B= fB, C= fC, D= fD, DD= fDD;
-    makeText();
-}
-
-function process() {
-    var a = prompt("What does bother me ?", ""); 
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    NPS = splitMe(a);
-    paint();
-
-    a = prompt("In what need does '" + NPS + "' bother me ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    B = a;
-    paint();
-
-    a = prompt("What should I do to attain the need '" + B +"' ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    D = a;
-    paint();
-
-    a = prompt("Which another need disturb me from making '" + D +"' ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    C = a;
-    paint();
-
-    a = prompt("What should I do to attain the need: " + C +"' ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    DD = a;
-    paint();
-
-    a = prompt("Why the both needs '" + B + "' and '" + C + "' are important for me ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    A = a;
-    
-    makeText();
-    paint();
-    $('#ourTitle').html("Your cloud");
 }
 
 function paint() {
@@ -356,7 +290,73 @@ Raphael.fn.connectionWithoutArrow = function(obj1, obj2, line, bg) {
     }
 };
 
+function process() {
+    NPS = A = B = C = D = DD = "";
+    
+    var a = prompt("What does bother me ?", ""); 
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    NPS = a;
+    paint();
+
+    a = prompt("In what need does '" + NPS + "' bother me ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    B = a;
+    paint();
+
+    a = prompt("What should I do to attain the need '" + B +"' ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    D = a;
+    paint();
+
+    a = prompt("Which another need disturb me from making '" + D +"' ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    C = a;
+    paint();
+
+    a = prompt("What should I do to attain the need: " + C +"' ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    DD = a;
+    paint();
+
+    a = prompt("Why the both needs '" + B + "' and '" + C + "' are important for me ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    A = a;
+    
+    paint();
+    $('#ourTitle').html("Your cloud");
+}
+
 revert();
 paint();
+
+  $("#history").click(function () {
+     var text = "I want '" + A + "'." + " To '" + B +"' I must '" + D + "'.\n" + " But to '" + C + "' I must '" + DD + "'.\n" + " But it's impossible to make '" + D + "' and '" + DD + "'.";
+    $("#history").attr( 'data-content', text );
+  });
+
 
 

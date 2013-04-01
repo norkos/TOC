@@ -1,30 +1,7 @@
+var fNPS = "I have problems in solving conflicts", fA= "Be known manager in my company", fB= "Manage in the efficient way", fC= "Fully understand the problem", fD= "Take the fast decisions", fDD= "Collect as much information as possible";
 var angle = 10;
 var NPS, A, B, C, D, DD;
-var raphael;
-
-var MAX = 18;
-	
-var width;
-var height;
-
-var start = 5;
-var text = 30;
-var fontSize;
-var dyText = 60;
-var dyFactorText = 100;
-
-function resizePaper(){
-  var win = $(this);
-  WIDTH = win.width();
-  HEIGHT = win.height();
-  
-  placeWidth = 0.75 * WIDTH;
-  placeHeight = 0.8 * HEIGHT;
-  
-  width = placeWidth / 5;
-  height = placeHeight / 6;
-  fontSize = width / 13;
-}
+var MAX;
 
 function splitMe(x)
 {
@@ -49,31 +26,38 @@ function splitMe(x)
     return result;
 }
 
-var aNPS = splitMe("I have problems in solving conflicts"), aA= splitMe("Be known manager in my company"), aB= splitMe("Manage in the efficient way"), aC= splitMe("Fully understand the problem"), aD= splitMe("Take the fast decisions"), aDD= splitMe("Collect as much information as possible");
-
-function makeText(){
-    var text = "I want '" + A + "'." + " To '" + B +"' I must '" + D + "'.\n" + " But to '" + C + "' I must '" + DD + "'.\n" + " But it's impossible to make '" + D + "' and '" + DD + "'.";
-    $('#history').attr( 'data-content', text );
-}
-
 function revert(){
-    $("#ourTitle").html("Cloud example");
-    NPS = aNPS, A= aA, B= aB, C= aC, D= aD, DD= aDD;
-    makeText();
+    $('#ourTitle').html("Cloud example");
+    NPS = fNPS, A= fA, B= fB, C= fC, D= fD, DD= fDD;
 }
 
 function paint() {
     $("#holder").html("");
+    var height = $(document).height() * 0.6;
+    var width = $("#holder").width();
 
-    raphael = Raphael("holder", placeWidth, placeHeight);
-
+    var raphael = Raphael("holder", width, height);
+    var x = width/4;
+    var dx =  x /5;    
+    var dx2 = 2 * dx + x;
+    var dx3 = 4 * dx + 2 * x;
+ 
+    var y = height /4;
+    var dy = y/3;
+    var dy2 = 2 * dy + y;
+    var dy3 = 3 * dy + 2 * y;
+    var dy23 = (dy2 + dy3) / 2;
+    
+    dy = dy/20;
+    dx = dx/20;
+    
     shapes = [
-    raphael.rect(1.75 * width, start, width, height, angle), // nps
-    raphael.rect(1.75 * width, dyFactorText + dyText, width, height, angle), // b
-    raphael.rect(3.5 * width, dyFactorText + dyText, width, height, angle), // d
-    raphael.rect(1.75 * width, 3 * dyFactorText + dyText, width, height, angle), // c
-    raphael.rect(3.5 * width, 3 * dyFactorText + dyText, width, height, angle), // d'
-    raphael.rect(start, 2 * dyFactorText + dyText, width, height, angle) // a
+    raphael.rect(dx2, dy, x, y, angle), // nps
+    raphael.rect(dx2, dy2, x, y, angle), // b
+    raphael.rect(dx3, dy2, x, y, angle), // d
+    raphael.rect(dx2, dy3, x, y, angle), // c
+    raphael.rect(dx3, dy3, x, y, angle), // dd
+    raphael.rect(dx, dy23, x, y, angle) // a
     ];
 	
     colors = [
@@ -92,13 +76,7 @@ function paint() {
             "stroke-width" : 2
         });
     }
-
-    var attrs = {
-        "text-anchor":"start",
-        fill: '#ffffff',
-        "font-size": fontSize
-    };
-
+    
     /* connections */
     connections = [
     raphael.connectionWithArrow(shapes[4], shapes[2], "#f00"), // D DD
@@ -109,72 +87,40 @@ function paint() {
     raphael.connectionWithoutArrow(shapes[1], shapes[5], "#D0D0D0"), // B A
     raphael.connectionWithoutArrow(shapes[3], shapes[5], "#D0D0D0") // A C ...
     ]
-
-    raphael.text(text + 1.75 * width, 1.5 * text + start, NPS).attr(attrs);
-    raphael.text(text + 1.75 * width, 1.5 * text + dyFactorText + dyText, B).attr(attrs);
-    raphael.text(text + 3.5 * width, 1.5 * text + dyFactorText + dyText, D).attr(attrs);
-    raphael.text(text + 1.75 * width, 1.5 * text + 3 * dyFactorText + dyText, C).attr(attrs);
-    raphael.text(text + 3.5 * width, 1.5 * text + 3 * dyFactorText + dyText, DD).attr(attrs);
-    raphael.text(text + start, 1.5 * text + 2* dyFactorText + dyText, A).attr(attrs);
-}
-
-function process() {
-    var a = prompt("What does bother me ?", ""); 
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    NPS = splitMe(a);
-    paint();
-
-    a = prompt("In what need does '" + NPS + "' bother me ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    B = a;
-    paint();
-
-    a = prompt("What should I do to attain the need '" + B +"' ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    D = a;
-    paint();
-
-    a = prompt("Which another need disturb me from making '" + D +"' ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    C = a;
-    paint();
-
-    a = prompt("What should I do to attain the need: " + C +"' ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    DD = a;
-    paint();
-
-    a = prompt("Why the both needs '" + B + "' and '" + C + "' are important for me ?", "");
-    if (a == null){
-        revert();
-        paint();
-        return;
-    }
-    A = a;
-    paint();
-	
-    makeText();
-    $("#ourTitle").html("Your cloud");
+        
+    var dXfontMargin = x/10;
+    dx2 = dx2 + dXfontMargin;
+    dx3 = dx3 + dXfontMargin;
+    dx = dx + dXfontMargin;
+    
+    var dyfontMargin = y/3;
+    dy2 = dy2 + dyfontMargin;
+    dy3 = dy3 + dyfontMargin;
+    dy23 = dy23 + dyfontMargin;
+    dy = dy + dyfontMargin;
+    
+    var fontSize = (y+x) /20;
+    MAX = x/15;
+    
+    NPS = splitMe(NPS);
+    A = splitMe(A);
+    B = splitMe(B);
+    C = splitMe(C);
+    D = splitMe(D);
+    DD = splitMe(DD);
+    
+    var attrs = {
+        "text-anchor":"start",
+        fill: '#fff',
+        "font-size":fontSize
+    };
+    
+    raphael.text(dx2, dy, NPS).attr(attrs);
+    raphael.text(dx2, dy2, B).attr(attrs);
+    raphael.text(dx3, dy2, D).attr(attrs);
+    raphael.text(dx2, dy3, C).attr(attrs);
+    raphael.text(dx3, dy3, DD).attr(attrs);
+    raphael.text(dx, dy23, A).attr(attrs);
 }
 
 Raphael.fn.connectionWithArrow = function(obj1, obj2, line, bg) {
@@ -344,10 +290,73 @@ Raphael.fn.connectionWithoutArrow = function(obj1, obj2, line, bg) {
     }
 };
 
-$(window).resize(resizePaper); 
-
-window.onload = function () {
-    resizePaper();
-    revert();
+function process() {
+    NPS = A = B = C = D = DD = "";
+    
+    var a = prompt("What does bother me ?", ""); 
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    NPS = a;
     paint();
-};
+
+    a = prompt("In what need does '" + NPS + "' bother me ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    B = a;
+    paint();
+
+    a = prompt("What should I do to attain the need '" + B +"' ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    D = a;
+    paint();
+
+    a = prompt("Which another need disturb me from making '" + D +"' ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    C = a;
+    paint();
+
+    a = prompt("What should I do to attain the need: " + C +"' ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    DD = a;
+    paint();
+
+    a = prompt("Why the both needs '" + B + "' and '" + C + "' are important for me ?", "");
+    if (a == null){
+        revert();
+        paint();
+        return;
+    }
+    A = a;
+    
+    paint();
+    $('#ourTitle').html("Your cloud");
+}
+
+revert();
+paint();
+
+  $("#history").click(function () {
+     var text = "I want '" + A + "'." + " To '" + B +"' I must '" + D + "'.\n" + " But to '" + C + "' I must '" + DD + "'.\n" + " But it's impossible to make '" + D + "' and '" + DD + "'.";
+    $("#history").attr( 'data-content', text );
+  });
+
+
+
