@@ -353,10 +353,10 @@ function process() {
 revert();
 paint();
 
-  $("#history").click(function () {
-     var text = "I want '" + A + "'." + " To '" + B +"' I must '" + D + "'.\n" + " But to '" + C + "' I must '" + DD + "'.\n" + " But it's impossible to make '" + D + "' and '" + DD + "'.";
+$("#history").click(function () {
+    var text = "I want '" + A + "'." + " To '" + B +"' I must '" + D + "'.\n" + " But to '" + C + "' I must '" + DD + "'.\n" + " But it's impossible to make '" + D + "' and '" + DD + "'.";
     $("#history").attr( 'data-content', text );
-  });
+});
 
 
 
