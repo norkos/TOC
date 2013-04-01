@@ -353,10 +353,42 @@ function process() {
 revert();
 paint();
 
-$("#history").click(function () {
-    var text = "I want '" + A + "'." + " To '" + B +"' I must '" + D + "'.\n" + " But to '" + C + "' I must '" + DD + "'.\n" + " But it's impossible to make '" + D + "' and '" + DD + "'.";
-    $("#history").attr( 'data-content', text );
-});
+// Generic self-contained jQueryUI alternative to
+// the browser's default JavaScript alert method.
+// The only prerequisite is to include jQuery & jQueryUI
+// This method automatically creates/destroys the container div
+// params:
+//     message = message to display
+//     title = the title to display on the alert
+//     buttonText = the text to display on the button which closes the alert
+function simpleAlert(message, title, buttonText) {
 
+    buttonText = (buttonText == undefined) ? "Ok" : buttonText;
+    title = (title == undefined) ? "The page says:" : title;
+
+    var div = $('<div>');
+    div.html(message);
+    div.attr('title', title);
+    div.dialog({
+        autoOpen: true,
+        modal: true,
+        draggable: false,
+        resizable: false,
+        buttons: [{
+            text: buttonText,
+            click: function () {
+                $(this).dialog("close");
+                div.remove();
+            }
+        }]
+    });
+}
+
+function readCloud(){
+    var text = "I want '" + A + "'.\nTo '" + B +"' I must '" + D + "'.\nBut to '" + C + "' I must '" + DD + "'.\nBut it's impossible to make '" + D + "' and '" + DD + "'.";
+    alert(text,"Cloud","Ok");
+};
+
+window.alert = simpleAlert;
 
 

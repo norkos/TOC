@@ -7,6 +7,7 @@
         <title>TOC Cloud</title>
 
         <!-- CSS -->
+	<link href="css/jquery-ui-1.10.2.custom.css" rel="stylesheet">
         <link href="css/bootstrap.css" rel="stylesheet">
         <style type="text/css">
 
@@ -96,7 +97,7 @@
                         <div class="nav-collapse collapse">
                             <ul class="nav">
                                 <li><a href="#"  onclick="process()">Make your cloud</a></li>
-                                <li><a id="history" href="#"  data-toggle="popover" data-placement="bottom" data-content="" title=" ">Read cloud</a></li>
+                                <li><a href="#" onclick="readCloud()">Read cloud</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                     </div>
@@ -124,12 +125,13 @@
             </div>
         </div>
 
-        <script src="js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-ui-1.10.2.custom.js"></script>
         <script src="js/bootstrap-tooltip.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/bootstrap-popover.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/bootstrap-collapse.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/raphael.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/raphael.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/cloud.js" type="text/javascript" charset="utf-8"></script>
 
 </html>
