@@ -99,8 +99,8 @@ function paint() {
     dy23 = dy23 + dyfontMargin;
     dy = dy + dyfontMargin;
     
-    var fontSize = (x+y)/16;
-    MAX = x/15;
+    var fontSize = x/12;
+    MAX = x/17;
     
     NPS = splitMe(NPS);
     A = splitMe(A);
